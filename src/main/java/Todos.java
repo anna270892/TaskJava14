@@ -11,13 +11,17 @@ public class Todos {
      * но с добавлением нового элемента в конец
      */
     private Task[] addToArray(Task[] current, Task task) {
+
         Task[] tmp = new Task[current.length + 1];
+
         for (int i = 0; i < current.length; i++) {
             tmp[i] = current[i];
         }
         tmp[tmp.length - 1] = task;
         return tmp;
+
     }
+
 
     /**
      * Метод добавления задачи в список дел
