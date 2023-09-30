@@ -116,4 +116,32 @@ public class TaskTest {
         Task[] actual = todos.search("дизайн проекта");
         Assertions.assertArrayEquals(expected, actual);
     }
+    
+    @Test
+    public void requestEpic4() {
+        String[] subtasks = {"разработка клиентской части"};
+        Epic epic = new Epic(1, subtasks);
+
+        Todos todos = new Todos();
+
+        todos.add(epic);
+
+        Task[] expected = {epic};
+        Task[] actual = todos.search("разработка клиентской части");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void requestEpic5() {
+        String[] subtasks = {};
+        Epic epic = new Epic(1, subtasks);
+
+        Todos todos = new Todos();
+
+        todos.add(epic);
+
+        Task[] expected = {};
+        Task[] actual = todos.search("разработка клиентской части");
+        Assertions.assertArrayEquals(expected, actual);
+    }
 }
