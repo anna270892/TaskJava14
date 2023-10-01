@@ -116,7 +116,7 @@ public class TaskTest {
         Task[] actual = todos.search("дизайн проекта");
         Assertions.assertArrayEquals(expected, actual);
     }
-    
+
     @Test
     public void requestEpic4() {
         String[] subtasks = {"разработка клиентской части"};
@@ -142,6 +142,80 @@ public class TaskTest {
 
         Task[] expected = {};
         Task[] actual = todos.search("разработка клиентской части");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+
+    //Тесты с менеджером
+    @Test
+    public void requestEpic6() {
+        Todos manager = new Todos();
+
+        String[] subtasks = {"разработка клиентской части", "разработка серверной части", "покрытие автотестами"};
+        Epic task = new Epic(1, subtasks);
+
+        manager.add(task);
+
+        Task[] expected = {task};
+        Task[] actual = manager.search("разработка клиентской части");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void requestEpic7() {
+        Todos manager = new Todos();
+
+        String[] subtasks = {"разработка клиентской части", "разработка серверной части", "покрытие автотестами"};
+        Epic task = new Epic(1, subtasks);
+
+        manager.add(task);
+
+        Task[] expected = {task};
+        Task[] actual1 = manager.search("разработка клиентской части");
+        Task[] actual2 = manager.search("покрытие автотестами");
+        Assertions.assertArrayEquals(expected, actual1);
+        Assertions.assertArrayEquals(expected, actual2);
+    }
+
+    @Test
+    public void requestEpic8() {
+        Todos manager = new Todos();
+
+        String[] subtasks = {"разработка клиентской части", "разработка серверной части", "покрытие автотестами"};
+        Epic task = new Epic(1, subtasks);
+
+        manager.add(task);
+
+        Task[] expected = {};
+        Task[] actual = manager.search("дизайн");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void requestEpic9() {
+        Todos manager = new Todos();
+
+        String[] subtasks = {};
+        Epic task = new Epic(1, subtasks);
+
+        manager.add(task);
+
+        Task[] expected = {};
+        Task[] actual = manager.search("дизайн");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void requestEpic10() {
+        Todos manager = new Todos();
+
+        String[] subtasks = {"разработка клиентской части"};
+        Epic task = new Epic(1, subtasks);
+
+        manager.add(task);
+
+        Task[] expected = {task};
+        Task[] actual = manager.search("разработка клиентской части");
         Assertions.assertArrayEquals(expected, actual);
     }
 }
