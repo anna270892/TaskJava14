@@ -41,15 +41,16 @@ public class Todos {
      *
      * @return Массив из подошедших задач
      */
-    public Task[] search(String... queries) {
+
+
+    public Task[] search(String query) {
         Task[] result = new Task[0]; // массив для ответа
-        for (String query : queries) {
             for (Task task : tasks) { // перебираем все задачи
                 if (task.matches(query)) { // если задача подходит под запрос
                     result = addToArray(result, task); // добавляем её в массив ответа
                 }
             }
+            return result;
         }
-        return result;
     }
-}
+

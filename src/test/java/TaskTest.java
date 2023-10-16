@@ -142,8 +142,8 @@ public class TaskTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
-
     //Тесты с менеджером
+    //ищем несколько задач
     @Test
     public void requestEpic6() {
         Todos manager = new Todos();
@@ -156,12 +156,15 @@ public class TaskTest {
         manager.add(taskTwo);
         manager.add(taskThree);
 
-        Task[] expected = {taskOne, taskThree};
-        Task[] actual = manager.search("разработка клиентской части", "покрытие автотестами");
+        String query = "разработка";
+
+        Task[] expected = {taskOne, taskTwo};
+        Task[] actual = manager.search(query);
 
         Assertions.assertArrayEquals(expected, actual);
     }
 
+    //ищем одну задачу
     @Test
     public void requestEpic7() {
         Todos manager = new Todos();
@@ -174,12 +177,15 @@ public class TaskTest {
         manager.add(taskTwo);
         manager.add(taskThree);
 
+        String query = "разработка клиентской части";
+
         Task[] expected = {taskOne};
-        Task[] actual = manager.search("разработка клиентской части");
+        Task[] actual = manager.search(query);
 
         Assertions.assertArrayEquals(expected, actual);
     }
 
+    //находим 0 задач, т.е. ни одна задача не подходит
     @Test
     public void requestEpic8() {
         Todos manager = new Todos();
@@ -192,8 +198,10 @@ public class TaskTest {
         manager.add(taskTwo);
         manager.add(taskThree);
 
+        String query = "тестирование";
+
         Task[] expected = {};
-        Task[] actual = manager.search("дизайн");
+        Task[] actual = manager.search(query);
 
         Assertions.assertArrayEquals(expected, actual);
     }
